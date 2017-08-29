@@ -122,14 +122,128 @@ Route::get('/insert', function() {
  * -------------------------------------------------------------------
  */
 
-Route::get('/findwhere', function() {
+//Route::get('/findwhere', function() {
+//
+//    $posts = Post::where('id', 3)->orderBy('id', 'desc')->take(1)->get();
+//
+//    return $posts;
+//
+//
+//});
 
-    $posts = Post::where('id', 3)->orderBy('id', 'desc')->take(1)->get();
 
-    return $posts;
+/*
+ * -------------------------------------------------------------------
+ * ELOQUENT
+ * -------------------------------------------------------------------
+ */
+
+//Route::get('/findmore', function() {
+//
+////   $posts = Post::findOrFail(3);
+////
+////   return $posts;
+//
+//     $posts = Post::where('users_count', '<', 50)->firstOrFail();
+//
+//
+//});
+
+
+Route::get('/basicinsert', function() {
+
+    $post = new Post;
+
+    $post->title = 'another post here';
+    $post->content = 'this is a second post';
+
+    $post->save();
+
 
 
 });
+
+
+//Route::get('/basicinsert2', function() {
+//
+//    $post = Post::find(3);
+//
+//    $post->title = 'updated title son';
+//    $post->content = 'the content of id 3 has changed son';
+//
+//    $post->save();
+//
+//
+//});
+
+//Route::get('/create', function() {
+//
+//    Post::create(['title' => 'new table', 'content' => 'deleted at column maybe?']);
+//
+//
+//});
+
+
+
+//Route::get('/update', function() {
+//
+//   Post::where('id', 1)->where('is_admin', 0)->update(['title' => 'New PHP title', 'content' => 'this shit is on fleek son']);
+//
+//});
+
+//
+//Route::get('/delete', function() {
+//
+//    $post = Post::find(1);
+//
+//    $post->delete();
+//
+//});
+
+//Route::get('/delete2', function() {
+//
+//    Post::destroy(3);
+////    Post::destroy([1,4,5]); //delete multiple id's
+////
+////    Post::where('is_admin', 0)->delete(); //delete by query
+//});
+
+
+Route::get('/softdelete', function() {
+
+    Post::find(1)->delete();
+
+
+});
+
+
+Route::get('/readsoftdelete', function() {
+
+//    $post = Post::find(1);
+//    return  $post;
+
+    $post = Post::withTrashed()->where('id', 1)->get();
+    return $post;
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
