@@ -27,12 +27,12 @@ Route::get('/', function () {
 
 //Route::get('post/{id}/{firstname}/{lastname}', 'PostsController@show_post');
 
-
-Route::get('/insert', function() {
-
-    DB::insert('insert into posts(title, content) values(?, ?)', ['Laravel is awesome with edwin', 'Laravel is gudder dan lamp']);
-});
-
+//
+//Route::get('/insert', function() {
+//
+//    DB::insert('insert into posts(title, content) values(?, ?)', ['Laravel is awesome with edwin', 'Laravel is gudder dan lamp']);
+//});
+//
 
 //DATABASE Raw SQL Queries
 //
@@ -149,19 +149,19 @@ Route::get('/insert', function() {
 //
 //});
 
-
-Route::get('/basicinsert', function() {
-
-    $post = new Post;
-
-    $post->title = 'another post here';
-    $post->content = 'this is a second post';
-
-    $post->save();
-
-
-
-});
+//
+//Route::get('/basicinsert', function() {
+//
+//    $post = new Post;
+//
+//    $post->title = 'another post here';
+//    $post->content = 'this is a second post';
+//
+//    $post->save();
+//
+//
+//
+//});
 
 
 //Route::get('/basicinsert2', function() {
@@ -176,12 +176,12 @@ Route::get('/basicinsert', function() {
 //
 //});
 
-//Route::get('/create', function() {
-//
-//    Post::create(['title' => 'new table', 'content' => 'deleted at column maybe?']);
-//
-//
-//});
+Route::get('/create', function() {
+
+    Post::create(['title' => 'new data', 'content' => 'i say let do it!']);
+
+
+});
 
 
 
@@ -191,10 +191,11 @@ Route::get('/basicinsert', function() {
 //
 //});
 
+
 //
 //Route::get('/delete', function() {
 //
-//    $post = Post::find(1);
+//    $post = Post::find(2);
 //
 //    $post->delete();
 //
@@ -209,21 +210,25 @@ Route::get('/basicinsert', function() {
 //});
 
 
-Route::get('/softdelete', function() {
-
-    Post::find(1)->delete();
-
-
-});
-
-
+//Route::get('/softdelete', function() {
+//
+//    Post::find(1)->delete();
+//
+//
+//});
+//
+//
 Route::get('/readsoftdelete', function() {
 
 //    $post = Post::find(1);
 //    return  $post;
 
-    $post = Post::withTrashed()->where('id', 1)->get();
+//    $post = Post::withTrashed()->where('is_admin', 0)->get();
+//    return $post;
+
+    $post = Post::onlyTrashed()->where('is_admin', 0)->get();
     return $post;
+
 
 });
 
