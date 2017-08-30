@@ -176,12 +176,12 @@ Route::get('/', function () {
 //
 //});
 
-Route::get('/create', function() {
-
-    Post::create(['title' => 'new data', 'content' => 'i say let do it!']);
-
-
-});
+//Route::get('/create', function() {
+//
+//    Post::create(['title' => 'more data here', 'content' => 'this is more data']);
+//
+//
+//});
 
 
 
@@ -192,14 +192,15 @@ Route::get('/create', function() {
 //});
 
 
-//
-//Route::get('/delete', function() {
-//
-//    $post = Post::find(2);
-//
-//    $post->delete();
-//
-//});
+
+Route::get('/delete', function() {
+
+    $post = Post::find(3);
+
+    $post->delete();
+
+});
+
 
 //Route::get('/delete2', function() {
 //
@@ -218,24 +219,32 @@ Route::get('/create', function() {
 //});
 //
 //
-Route::get('/readsoftdelete', function() {
-
-//    $post = Post::find(1);
-//    return  $post;
-
-//    $post = Post::withTrashed()->where('is_admin', 0)->get();
+//Route::get('/readsoftdelete', function() {
+//
+////    $post = Post::find(1);
+////    return  $post;
+//
+////    $post = Post::withTrashed()->where('is_admin', 0)->get();
+////    return $post;
+//
+//    $post = Post::onlyTrashed()->where('is_admin', 0)->get();
 //    return $post;
+//
+//
+//});
 
-    $post = Post::onlyTrashed()->where('is_admin', 0)->get();
-    return $post;
 
+//Route::get('/restore', function() {
+//
+//    Post::withTrashed()->where('is_admin', 0)->restore();
+//
+//});
+
+Route::get('/forcedelete', function() {
+
+   Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
 
 });
-
-
-
-
-
 
 
 
