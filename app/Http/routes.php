@@ -1,5 +1,6 @@
 <?php
 use App\Post;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -192,14 +193,14 @@ Route::get('/', function () {
 //});
 
 
-
-Route::get('/delete', function() {
-
-    $post = Post::find(3);
-
-    $post->delete();
-
-});
+//
+//Route::get('/delete', function() {
+//
+//    $post = Post::find(3);
+//
+//    $post->delete();
+//
+//});
 
 
 //Route::get('/delete2', function() {
@@ -240,25 +241,52 @@ Route::get('/delete', function() {
 //
 //});
 
-Route::get('/forcedelete', function() {
+//Route::get('/forcedelete', function() {
+//
+//   Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
+//
+//});
 
-   Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
+
+
+/*
+ * -------------------------------------------------------------------
+ * ELOQUENT RELATIONSHIPS
+ * -------------------------------------------------------------------
+ */
+
+//// 1 TO 1 RELATIONSHIP
+//
+//Route::get('/user/{id}/post', function($id) {
+//
+//    return User::find($id)->post->content;
+//});
+//
+//
+
+//// INVERSE RELATIONSHIP
+
+//
+//Route::get('/post/{id}/user', function ($id) {
+//
+//    return Post::find($id)->user->name;
+//
+//});
+
+
+//////ONE TO MANY RELATIONSHIP
+
+Route::get('/posts', function () {
+
+    $user = User::find(1);
+
+    foreach ($user->posts as $post) {
+
+        echo $post->title . "<br>";
+
+    }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
