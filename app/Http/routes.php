@@ -1,7 +1,7 @@
 <?php
 use App\Post;
 use App\User;
-//use App\Role;
+use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -337,7 +337,19 @@ Route::get('user/pivot', function() {
 });
 
 
+//// Has Many Through Relationship
 
+Route::get('/user/country', function () {
+
+    $country = Country::find(5);
+
+    foreach($country->posts as $post) {
+
+        return $post->title;
+
+    }
+
+});
 
 
 
