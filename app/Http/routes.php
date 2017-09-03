@@ -1,6 +1,7 @@
 <?php
 use App\Post;
 use App\User;
+//use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,19 +152,19 @@ Route::get('/', function () {
 //
 //});
 
-
-Route::get('/basicinsert', function() {
-
-    $post = new Post;
-
-    $post->title = 'title number three';
-    $post->content = 'more content here';
-
-    $post->save();
-
-
-
-});
+//
+//Route::get('/basicinsert', function() {
+//
+//    $post = new Post;
+//
+//    $post->title = 'title number three';
+//    $post->content = 'more content here';
+//
+//    $post->save();
+//
+//
+//
+//});
 
 
 //Route::get('/basicinsert2', function() {
@@ -293,20 +294,30 @@ Route::get('/basicinsert', function() {
 
 //// MANY TO MANY RELATIONSHIP
 
-Route::get('/posts', function () {
-
-    $user = User::find(1);
-
-    foreach($user->posts as $post) {
-        echo $post->title . "<br>";
-
-    }
-
-});
-
-
+//Route::get('/posts', function () {
+//
+//    $user = User::find(2);
+//
+//    foreach($user->posts as $post) {
+//        echo $post->content . "<br>";
+//
+//    }
+//
+//});
 
 
+///// MANY TO MANY INVERSE TABLE (JOIN) RELATIONSHIP
 
-
-
+//Route::get('/user/{id}/role', function($id) {
+//
+//    $user = User::find($id)->roles()->orderBy('id', 'desc')->get();
+//
+//    return $user;
+//
+////    foreach($user->roles as $role) {
+////
+////        echo $role->name;
+////    }
+//
+//});
+//
