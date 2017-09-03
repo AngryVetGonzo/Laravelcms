@@ -28,12 +28,13 @@ Route::get('/', function () {
 
 //Route::get('post/{id}/{firstname}/{lastname}', 'PostsController@show_post');
 
-//
+
 //Route::get('/insert', function() {
 //
 //    DB::insert('insert into posts(title, content) values(?, ?)', ['Laravel is awesome with edwin', 'Laravel is gudder dan lamp']);
 //});
 //
+
 
 //DATABASE Raw SQL Queries
 //
@@ -150,19 +151,19 @@ Route::get('/', function () {
 //
 //});
 
-//
-//Route::get('/basicinsert', function() {
-//
-//    $post = new Post;
-//
-//    $post->title = 'another post here';
-//    $post->content = 'this is a second post';
-//
-//    $post->save();
-//
-//
-//
-//});
+
+Route::get('/basicinsert', function() {
+
+    $post = new Post;
+
+    $post->title = 'title number three';
+    $post->content = 'more content here';
+
+    $post->save();
+
+
+
+});
 
 
 //Route::get('/basicinsert2', function() {
@@ -276,21 +277,32 @@ Route::get('/', function () {
 
 //////ONE TO MANY RELATIONSHIP
 
+//Route::get('/posts', function () {
+//
+//    $user = User::find(1);
+//
+//    foreach ($user->posts as $post) {
+//
+//        echo $post->title . "<br>";
+//
+//    }
+//
+//});
+
+
+
+//// MANY TO MANY RELATIONSHIP
+
 Route::get('/posts', function () {
 
     $user = User::find(1);
 
-    foreach ($user->posts as $post) {
-
+    foreach($user->posts as $post) {
         echo $post->title . "<br>";
 
     }
 
 });
-
-
-
-
 
 
 
