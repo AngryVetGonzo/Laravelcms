@@ -325,35 +325,47 @@ Route::get('/', function () {
 
 /// Accessing the intermediate table / pivot
 
-Route::get('user/pivot', function() {
+//Route::get('user/pivot', function() {
+//
+//   $user = User::find(1);
+//
+//   foreach ($user->roles as $role) {
+//
+//       return $role->pivot->created_at;
+//   }
+//
+//});
+//
+//
+////// Has Many Through Relationship
+//
+//Route::get('/user/country', function () {
+//
+//    $country = Country::find(5);
+//
+//    foreach($country->posts as $post) {
+//
+//        return $post->title;
+//
+//    }
+//
+//});
 
-   $user = User::find(1);
 
-   foreach ($user->roles as $role) {
+//// Polymorphic Relationships
 
-       return $role->pivot->created_at;
+
+
+
+Route::get('/post/{id}/photos', function($id) {
+
+    $post = Post::find($id);
+
+   foreach($post->photos as $photo) {
+
+       echo $photo->path . "<br>";
    }
-
 });
-
-
-//// Has Many Through Relationship
-
-Route::get('/user/country', function () {
-
-    $country = Country::find(5);
-
-    foreach($country->posts as $post) {
-
-        return $post->title;
-
-    }
-
-});
-
-
-
-
 
 
 
