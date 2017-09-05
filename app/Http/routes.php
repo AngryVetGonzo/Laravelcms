@@ -2,6 +2,8 @@
 use App\Post;
 use App\User;
 use App\Country;
+use App\Photo;
+use App\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -356,17 +358,57 @@ Route::get('/', function () {
 
 
 
+//
+//Route::get('/post/{id}/photos', function($id) {
+//
+//    $post = Post::find($id);
+//
+//   foreach($post->photos as $photo) {
+//
+//       echo $photo->path . "<br>";
+//   }
+//});
 
-Route::get('/post/{id}/photos', function($id) {
 
-    $post = Post::find($id);
 
-   foreach($post->photos as $photo) {
 
-       echo $photo->path . "<br>";
-   }
+//Route::get('photo/{id}/post', function($id) {
+//
+//    $photo = Photo::findOrFail($id);
+//
+//    return $photo->imageable;
+//
+//
+//});
+
+
+
+/// Polymorphic Many To Many
+
+
+//Route::get('/post/tag', function() {
+//
+//
+//    $post = Post::find(1);
+//
+//    foreach($post->tags as $tag) {
+//
+//        echo $tag->name;
+//
+//    }
+//
+//});
+
+
+Route::get('/tag/post', function() {
+
+    $tag = Tag::find(2);
+
+    foreach($tag->posts as $post) {
+
+        echo $post->title;
+    }
 });
-
 
 
 
