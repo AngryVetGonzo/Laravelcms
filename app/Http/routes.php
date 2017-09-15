@@ -400,19 +400,23 @@ Route::get('/', function () {
 //});
 
 
-Route::get('/tag/post', function() {
-
-    $tag = Tag::find(2);
-
-    foreach($tag->posts as $post) {
-
-        echo $post->title;
-    }
-});
-
-
+//Route::get('/tag/post', function() {
+//
+//    $tag = Tag::find(2);
+//
+//    foreach($tag->posts as $post) {
+//
+//        echo $post->title;
+//    }
+//});
 
 
+/*
+ * -------------------------------------------------------------------
+ * CRUD APPLICATION
+ * -------------------------------------------------------------------
+ */
 
+Route::resource('/posts', 'PostsController');
 
 
