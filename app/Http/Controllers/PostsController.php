@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -13,10 +14,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         //
-        return "The number is " . $id;
+        $posts = Post::all();
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -40,7 +43,21 @@ class PostsController extends Controller
     {
         //
 
-        return $request->all();
+//        return $request->all();
+
+        Post::create($request->all());
+
+        return redirect('/posts');
+
+//        $input = $request->all();
+
+//        $input['title'] = $request->title;
+//
+//        Post::create($request->all());
+//        $post = new Post:
+//        $post->title = $request->title;
+//        $post->save();
+
     }
 
     /**
@@ -51,7 +68,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        return "this is the show method son" . " " . $id;
+
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -63,6 +82,13 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
+
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
+
+
+
     }
 
     /**
