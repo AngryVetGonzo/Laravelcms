@@ -5,8 +5,7 @@
 
 @section('content')
 
-    <h1>{{$post->title}}</h1>
-
-    <a href="{{route('posts.edit', $post->id)}}">back</a>
+    <a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a>
 
 @endsection
+
