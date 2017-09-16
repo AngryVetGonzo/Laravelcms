@@ -7,4 +7,6 @@
 
     <h1>{{$post->title}}</h1>
 
+    <a href="{{route('posts.edit', $post->id)}}">back</a>
+
 @endsection
