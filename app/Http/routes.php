@@ -4,6 +4,7 @@ use App\User;
 use App\Country;
 use App\Photo;
 use App\Tag;
+use App\Video;
 
 /*
 |--------------------------------------------------------------------------
@@ -417,6 +418,18 @@ Route::get('/', function () {
  * -------------------------------------------------------------------
  */
 
-Route::resource('/posts', 'PostsController');
+
+
+Route::group(['middlewareGroups' => ['web']], function () {
+    Route::resource('/posts', 'PostsController');
+
+});
+
+
+
+
+
+
+
 
 

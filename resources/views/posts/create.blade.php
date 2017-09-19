@@ -1,28 +1,28 @@
 @extends('layouts.app')
-
-
-
-
 @section('content')
 
     <h1>create post</h1>
-
     {{--<form method="post" action="/posts">--}}
-        {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store']) !!}
-
+    {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store']) !!}
     <div class="form-group">
-
         {!! Form::label('title', "Title:") !!}
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
-
     </div>
-
-    <div class="form-control">
-        {!! Form::submit() !!}
+    <div class="form-group">
+        {!! Form::submit('Create Post', ['class' => 'btn btn-primary']) !!}
     </div>
-
     {!! Form::close() !!}
 
 
+    @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
 
+    @endif
 @endsection
+
