@@ -5,6 +5,7 @@ use App\Country;
 use App\Photo;
 use App\Tag;
 use App\Video;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -422,6 +423,25 @@ Route::get('/', function () {
 
 Route::group(['middlewareGroups' => ['web']], function () {
     Route::resource('/posts', 'PostsController');
+
+    Route::get('/dates', function () {
+        $date = new DateTime('+1 week');
+        echo $date->format('m-d-Y');
+
+        echo '<br>';
+
+        echo Carbon::now()->addDays(10)->diffForHumans();
+        echo '<br>';
+
+        echo Carbon::now()->subMonths(5)->diffForHumans();
+        echo '<br>';
+
+        echo Carbon::now()->yesterday();
+        echo '<br>';
+
+        echo Carbon::now();
+        echo '<br>';
+    });
 
 });
 
