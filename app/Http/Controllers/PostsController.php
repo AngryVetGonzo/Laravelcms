@@ -43,6 +43,24 @@ class PostsController extends Controller
     public function store(CreatePostRequest $request)
     {
         //
+        $input = $request->all();
+
+        if($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            $input['path'] = $name;
+
+            Post::create($input);
+        }
+
+
+
+
+
+//       $file = $request->file('file');
+//       echo $file->getClientSize();
+//       echo "<br>";
+//       echo $file->getClientOriginalName();
 
 
 //        $this->validate($request, [
@@ -55,9 +73,9 @@ class PostsController extends Controller
 
 //        return $request->all();
 
-        Post::create($request->all());
-
-        return redirect('/posts');
+//        Post::create($request->all());
+//
+//        return redirect('/posts');
 
 //        $input = $request->all();
 
